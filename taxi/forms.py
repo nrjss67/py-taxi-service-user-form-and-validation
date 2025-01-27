@@ -2,8 +2,10 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
+from django.core.validators import MinLengthValidator
 
 from taxi.models import Driver, Car
+from taxi.validators import LicenseNumberValidator
 
 
 class DriverCreateForm(UserCreationForm):
@@ -13,6 +15,7 @@ class DriverCreateForm(UserCreationForm):
 
 
 class DriverLicenseUpdateForm(forms.ModelForm):
+    license_number = forms.CharField(validators=[LicenseNumberValidator(), MinLengthValidator(8)])
     class Meta:
         model = Driver
         fields = ("license_number",)

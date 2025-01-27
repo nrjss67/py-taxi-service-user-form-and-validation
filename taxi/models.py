@@ -1,9 +1,6 @@
-from django.core.validators import MinLengthValidator
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.urls import reverse
-
-from taxi.validators import LicenseNumberValidator
 
 
 class Manufacturer(models.Model):
@@ -21,8 +18,6 @@ class Driver(AbstractUser):
     license_number = models.CharField(
         max_length=8,
         unique=True,
-        validators=[LicenseNumberValidator(),
-                    MinLengthValidator(8)],
     )
 
     class Meta:
