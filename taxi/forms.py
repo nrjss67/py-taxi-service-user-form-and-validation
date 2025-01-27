@@ -12,7 +12,7 @@ class DriverCreateForm(UserCreationForm):
         fields = UserCreationForm.Meta.fields + ("license_number",)
 
 
-class DriverUpdateForm(forms.ModelForm):
+class DriverLicenseUpdateForm(forms.ModelForm):
     class Meta:
         model = Driver
         fields = ("license_number",)
